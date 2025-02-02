@@ -9,25 +9,15 @@ import (
 )
 
 var (
+	rootFolder data.Folder
+	store      *data.Storage[data.Folder]
+	rootCmd    *cobra.Command
+
 	is_file   bool
 	dir       string
 	name      string
 	file_type string
 )
-
-var rootFolder = data.Folder{
-	Directory:  "",
-	FolderName: "/",
-	Files:      []*data.File{},
-	SubFolders: []*data.Folder{},
-}
-var store = data.NewStorage[data.Folder]("./fts_data.json")
-
-var rootCmd = &cobra.Command{
-	Use:   "fts",
-	Short: "Folder tree structure",
-	Long:  "A folder tree structure CLI application following the object-oriented programming principles",
-}
 
 func Excute() {
 	err := rootCmd.Execute()
@@ -42,16 +32,32 @@ func Excute() {
 }
 
 func init() {
+	rootFolder = data.Folder{
+		Directory:  "",
+		FolderName: "/",
+		Files:      []*data.File{},
+		SubFolders: []*data.Folder{},
+	}
+
+	homeDir, _ := os.UserHomeDir()
+	store = data.NewStorage[data.Folder](fmt.Sprintf("%s/fts_data.json", homeDir))
+
 	store.Load(&rootFolder)
+
+	rootCmd = &cobra.Command{
+		Use:   "fts",
+		Short: "Folder tree structure",
+		Long:  "A CLI application that simulates a folder-tree structure",
+	}
 
 	rootCmd.AddCommand(add)
 	rootCmd.AddCommand(get)
 	rootCmd.AddCommand(delete)
 	rootCmd.AddCommand(search)
-	rootCmd.AddCommand(tree)
+	rootCmd.AddCommand(show)
 
-	rootCmd.PersistentFlags().BoolVar(&is_file, "file", false, "set is file or not")
-	rootCmd.PersistentFlags().StringVarP(&dir, "dir", "d", "/", "file/forder directory")
+	rootCmd.PersistentFlags().BoolVarP(&is_file, "file", "f", false, "set is file or not")
+	rootCmd.PersistentFlags().StringVarP(&dir, "dir", "d", "/", "file/forder's parent directory")
 	rootCmd.PersistentFlags().StringVarP(&file_type, "type", "t", "txt", "file type")
 	rootCmd.PersistentFlags().StringVarP(&name, "name", "n", "NAME", "file/folder name")
 }

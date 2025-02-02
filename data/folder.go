@@ -31,7 +31,7 @@ func (root *Folder) validateFolder() error {
 }
 
 func (root *Folder) FindFolderByDirectory(dir string) *Folder {
-	if dir == "/" {
+	if dir == "/" || dir == "" {
 		return root
 	}
 
@@ -230,7 +230,7 @@ func (root *Folder) DisplayFolderTree() {
 	var dfs func(root *Folder, indent string)
 	dfs = func(root *Folder, indent string) {
 		fmt.Printf("%s%s\n", indent, root.FolderName)
-		indent = fmt.Sprintf("   %s", indent)
+		indent = fmt.Sprintf("    %s", indent)
 		if len(root.SubFolders) > 0 {
 			for _, subFolder := range root.SubFolders {
 				dfs(subFolder, indent)
