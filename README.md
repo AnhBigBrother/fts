@@ -21,20 +21,20 @@ go install github.com/AnhBigBrother/fts
 
 **Available Commands:**
 
-`add` Add new file or folder  
-`del` Remove file or folder  
-`get` Retrieve file/folder  
-`search` Search file/folder by name  
-`show` Show folder-tree structure  
-`help` Help about any command  
+`add`     Add a new file or folder  
+`del`     Remove file or folder  
+`get`     Retrieve file/folder  
+`search`  Search file/folder by name  
+`show`    Show folder-tree structure  
+`help`    Help about any command  
 
 **Flags:**
 
-`-f`, `--file` set is file or not  
-`-d`, `--dir` string file/forder's parent directory (default "/")  
-`-n`, `--name` string file/folder name (default "NAME")  
-`-t`, `--type` string file type (default "txt")  
-`-h`, `--help` help for fts  
+`-f`, `--file`   <bool> set is file or not  
+`-d`, `--dir`    <string> file/folder's parent directory (default "/")  
+`-n`, `--name`   <string> file/folder name (default "NAME")  
+`-t`, `--type`   <string> file type (default "txt")  
+`-h`, `--help`            help for fts  
 
 **Note:** Use `fts [command] --help` for more information about a command.
 
