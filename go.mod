@@ -1,4 +1,4 @@
-module github.com/AnhBigBrother/folder-tree-structure
+module github.com/AnhBigBrother/fts
 
 go 1.23.0
 

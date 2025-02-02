@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/AnhBigBrother/folder-tree-structure/data"
+	"github.com/AnhBigBrother/fts/data"
 	"github.com/spf13/cobra"
 )
 
